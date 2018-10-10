@@ -28,10 +28,12 @@ namespace AutoList.Tests
 
             // Assert
             Assert.Equal(3, result.Count);
-            foreach ( var res in result )
+            Assert.Equal(expectedStrings, result);
+
+            // Print out the strings to the console
+            foreach ( var s in result )
             {
-                _output.WriteLine(res);
-                Assert.Equal(expectedStrings, result);
+                _output.WriteLine(s);
             }
         }
 
