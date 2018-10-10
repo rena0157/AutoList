@@ -1,4 +1,48 @@
-﻿LIST 8 found
+﻿LIST
+Select objects: Specify opposite corner: 11 found
+
+Select objects:
+                  LWPOLYLINE  Layer: "0"
+                            Space: Model space
+                   Handle = 220
+            Closed
+    Constant width    0.0000
+              area   1.6050
+         perimeter   5.5828
+
+          at point  X=   4.9038  Y=   0.9459  Z=   0.0000
+          at point  X=   4.9038  Y=   1.4371  Z=   0.0000
+          at point  X=   6.1357  Y=   1.4371  Z=   0.0000
+          at point  X=   7.1442  Y=   1.4371  Z=   0.0000
+          at point  X=   7.0165  Y=   0.9842  Z=   0.0000
+          at point  X=   5.9187  Y=   0.4165  Z=   0.0000
+
+                  HATCH     Layer: "0"
+                            Space: Model space
+                   Handle = 223
+                 Hatch pattern ANSI31
+                 Annotative: No
+                 Hatch scale    1.0000
+                 Hatch angle      0
+                 Associative
+                 Area      1.6050
+                 Origin    X=   0.0000  Y=   0.0000  Z=   0.0000
+
+                  MTEXT     Layer: "0"
+Press ENTER to continue:
+                            Space: Model space
+                   Handle = 21f
+             Style = "Standard"
+        Annotative: No
+Location:        X=   2.4296  Y=   2.1523  Z=   0.0000
+Width:              1.6447
+Normal:          X=   0.0000  Y=   0.0000  Z=   1.0000
+Rotation:                0
+Text height:        0.2000
+Line spacing:    Multiple (1x =    0.3333)
+Attachment:      TopLeft
+Flow direction:  ByStyle
+Contents:        Text Object 4
 
                   TEXT      Layer: "0"
                             Space: Model space
@@ -14,6 +58,7 @@
          obliquing angle      0
         generation normal
 
+Press ENTER to continue:
                   TEXT      Layer: "0"
                             Space: Model space
                    Handle = 21c
@@ -26,7 +71,6 @@
           rotation angle      0
              width scale factor    1.0000
          obliquing angle      0
-Press ENTER to continue:
         generation normal
 
                   LWPOLYLINE  Layer: "0"
@@ -44,6 +88,7 @@ Press ENTER to continue:
 
                   HATCH     Layer: "0"
                             Space: Model space
+Press ENTER to continue:
                    Handle = 21b
                  Hatch pattern ANSI31
                  Annotative: No
@@ -56,7 +101,6 @@ Press ENTER to continue:
                   LINE      Layer: "0"
                             Space: Model space
                    Handle = 210
-Press ENTER to continue:
               from point, X=   6.3656  Y=   4.8569  Z=   0.0000
                 to point, X=   8.7823  Y=   4.5917  Z=   0.0000
           Length =   2.4312,  Angle in XY Plane =    354
@@ -74,6 +118,7 @@ Press ENTER to continue:
           at point  X=   2.6411  Y=   3.9665  Z=   0.0000
 
                   LWPOLYLINE  Layer: "0"
+Press ENTER to continue:
                             Space: Model space
                    Handle = 208
               Open
@@ -87,7 +132,6 @@ Press ENTER to continue:
 
                   TEXT      Layer: "0"
                             Space: Model space
-Press ENTER to continue:
                    Handle = 207
              Style = "Standard"
         Annotative: No

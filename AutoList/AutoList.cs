@@ -29,18 +29,29 @@ namespace AutoList
             return returnList;
         }
 
-        public static List<double> GetLengths(string inputText, string pattern)
+        /// <summary>
+        /// Returns a double list of numbers that are from a text string.
+        /// These numbers are converted to doubles and are within the "number" group
+        /// of a regular expression
+        /// </summary>
+        /// <param name="inputText">The input string</param>
+        /// <param name="pattern">The pattern</param>
+        /// <returns>A list of doubles</returns>
+        public static List<double> GetDouble(string inputText, string pattern)
         {
-            return new List<double>();
-        }
+            var returnList = new List<double>();
+            foreach ( Match match in Regex.Matches(inputText, pattern) )
+            {
+                if (double.TryParse(match.Groups["number"].Value, out var tempNum))
+                    returnList.Add(tempNum);
+            }
 
-        public static List<double> GetAreas(string inputText, string pattern)
-        {
-            return new List<double>();
+            return returnList;
         }
 
         public static List<string> Export(params IList[] list)
         {
+
             return new List<string>();
         }
     }

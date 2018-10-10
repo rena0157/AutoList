@@ -6,11 +6,11 @@ namespace AutoList
 {
     public static class AutoListPatterns
     {
-        public static string LinesLengthPattern = "";
-        public static string PolylinesLengthPattern = "";
-        public static string HatchAreaPattern = "";
-        public static readonly string TextPattern = 
-            @"text\s*(?<text>.*)";
+        public const string LinesLengthPattern = @"[L,l]ength\s+=?\s*(?<number>\d+\.?\d*)";
+
+        public const string HatchAreaPattern = @"Area\s*(?<number>\d+\.?\d*)";
+
+        public const string TextPattern = @"(text|Contents:)\s*(?<text>.*)";
     }
 
     public enum ExportType
