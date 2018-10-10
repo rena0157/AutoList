@@ -4,5 +4,6 @@ namespace AutoList
 {
     public class Class1
     {
+
     }
 }
