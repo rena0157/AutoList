@@ -1,0 +1,101 @@
+﻿LIST 8 found
+
+                  TEXT      Layer: "0"
+                            Space: Model space
+                   Handle = 21d
+             Style = "Standard"
+        Annotative: No
+             Typeface = Arial
+             start point, X=   3.9829  Y=   3.9197  Z=   0.0000
+            height    0.2000
+              text Text Object 3
+          rotation angle      0
+             width scale factor    1.0000
+         obliquing angle      0
+        generation normal
+
+                  TEXT      Layer: "0"
+                            Space: Model space
+                   Handle = 21c
+             Style = "Standard"
+        Annotative: No
+             Typeface = Arial
+             start point, X=   3.9829  Y=   2.4668  Z=   0.0000
+            height    0.2000
+              text Text Object 2
+          rotation angle      0
+             width scale factor    1.0000
+         obliquing angle      0
+Press ENTER to continue:
+        generation normal
+
+                  LWPOLYLINE  Layer: "0"
+                            Space: Model space
+                   Handle = 213
+            Closed
+    Constant width    0.0000
+              area   2.5373
+         perimeter   6.4410
+
+          at point  X=   6.5362  Y=   2.1480  Z=   0.0000
+          at point  X=   6.5362  Y=   3.6445  Z=   0.0000
+          at point  X=   8.2516  Y=   3.6445  Z=   0.0000
+          at point  X=   8.4506  Y=   2.3564  Z=   0.0000
+
+                  HATCH     Layer: "0"
+                            Space: Model space
+                   Handle = 21b
+                 Hatch pattern ANSI31
+                 Annotative: No
+                 Hatch scale    1.0000
+                 Hatch angle      0
+                 Associative
+                 Area      2.5373
+                 Origin    X=   0.0000  Y=   0.0000  Z=   0.0000
+
+                  LINE      Layer: "0"
+                            Space: Model space
+                   Handle = 210
+Press ENTER to continue:
+              from point, X=   6.3656  Y=   4.8569  Z=   0.0000
+                to point, X=   8.7823  Y=   4.5917  Z=   0.0000
+          Length =   2.4312,  Angle in XY Plane =    354
+                  Delta X =   2.4167, Delta Y =   -0.2652, Delta Z =   0.0000
+
+                  LWPOLYLINE  Layer: "0"
+                            Space: Model space
+                   Handle = 20f
+              Open
+    Constant width    0.0000
+              area   0.0000
+            length   1.2566
+
+          at point  X=   1.9114  Y=   2.9436  Z=   0.0000
+          at point  X=   2.6411  Y=   3.9665  Z=   0.0000
+
+                  LWPOLYLINE  Layer: "0"
+                            Space: Model space
+                   Handle = 208
+              Open
+    Constant width    0.0000
+              area   2.6125
+            length   5.4836
+
+          at point  X=   0.3097  Y=   3.0099  Z=   0.0000
+          at point  X=   1.8545  Y=   5.2168  Z=   0.0000
+          at point  X=   4.5934  Y=   5.7472  Z=   0.0000
+
+                  TEXT      Layer: "0"
+                            Space: Model space
+Press ENTER to continue:
+                   Handle = 207
+             Style = "Standard"
+        Annotative: No
+             Typeface = Arial
+             start point, X=   3.9829  Y=   3.0840  Z=   0.0000
+            height    0.2000
+              text Text Object 1
+          rotation angle      0
+             width scale factor    1.0000
+         obliquing angle      0
+        generation normal
