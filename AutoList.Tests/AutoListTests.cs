@@ -22,7 +22,6 @@ namespace AutoList.Tests
         public AutoListTests(ITestOutputHelper output)
         {
             _output = output;
-            _inputStrings = new[] {File.ReadAllText(Filenames[0])};
         }
 
         private static string ReadFile(string fileName) { return File.ReadAllText(fileName); }
@@ -34,7 +33,6 @@ namespace AutoList.Tests
         };
 
         private readonly ITestOutputHelper _output;
-        private readonly string[] _inputStrings;
 
         [Theory]
         [InlineData(new[] {2.4312, 1.2566, 5.4836}, AutoListPatterns.LinesLengthPattern)]
