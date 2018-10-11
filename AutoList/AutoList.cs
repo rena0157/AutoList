@@ -52,6 +52,7 @@ namespace AutoList
         /// <returns>A dataLists of doubles</returns>
         public static List<double> GetDouble(string inputText, string pattern)
         {
+            // The return list
             var returnList = new List<double>();
             foreach ( Match match in Regex.Matches(inputText, pattern) )
                 if ( double.TryParse(match.Groups["number"].Value, out var tempNum) )
@@ -60,6 +61,13 @@ namespace AutoList
             return returnList;
         }
 
+        /// <summary>
+        /// Uses the <see cref="GetDouble"/> and <see cref="GetText"/> functions
+        /// to grab lines, polylines, hatches and text objects. This function will return
+        /// a CSV formatted string with the following headers "BlockID,Frontage,Area"
+        /// </summary>
+        /// <param name="inputText">Input text from AutoCAD List command</param>
+        /// <returns>A CSV formatted String</returns>
         public static string GetBlocks(string inputText)
         {
             var textObjects = GetText(inputText, AutoListPatterns.TextPattern);
@@ -91,6 +99,14 @@ namespace AutoList
             return ExportCsv("Block ID,Frontage,Area", textObjects, adjustedLengths, areas);
         }
 
+        /// <summary>
+        /// Generic Function for writing data to a CSV file. This function
+        /// takes a string for headers and a list of lists for the data. Each of the
+        /// data lists are the columns in table.
+        /// </summary>
+        /// <param name="headers">The headers of the CSV file</param>
+        /// <param name="dataLists">A list of lists that are the columns in the CSV File</param>
+        /// <returns>A string formatted as a CSV file</returns>
         public static string ExportCsv(string headers, params IList[] dataLists)
         {
             var itemsPerList = dataLists[0].Count;
@@ -99,10 +115,10 @@ namespace AutoList
 
             var sb = new StringBuilder();
             sb.Append(headers + ",\n");
-            // Write Lines
+            // Each run through the loop will write a full row in the string
             for ( var index = 0; index < itemsPerList; ++index )
             {
-                // Write Data into lines
+                // Each run through the loop will write each data to the string
                 foreach ( var dataList in dataLists )
                     sb.Append(dataList[index] + ",");
                 sb.Append("\n");
