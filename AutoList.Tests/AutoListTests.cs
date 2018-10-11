@@ -17,8 +17,15 @@ using Xunit.Abstractions;
 
 namespace AutoList.Tests
 {
+    /// <summary>
+    /// Main testing class for the <see cref="AutoList"/> class
+    /// </summary>
     public class AutoListTests
     {
+        /// <summary>
+        /// Constructor that will set up the output console object
+        /// </summary>
+        /// <param name="output">Automatically send in a ITestOutputHelper</param>
         public AutoListTests(ITestOutputHelper output)
         {
             _output = output;
@@ -76,7 +83,7 @@ namespace AutoList.Tests
 
             // Act
             var result = AutoList.GetBlocks(inputText);
-            var expected = "Block ID,Frontage,Area,\nBlock 1,100,2900,\nBlock 1,0,2900,\n";
+            const string expected = "Block ID,Frontage,Area,\nBlock 1,100,2900,\nBlock 1,0,2900,\n";
             // Assert
             Assert.Equal(expected, result);
         }
