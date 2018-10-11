@@ -1,0 +1,64 @@
+﻿Select objects: 1 found, 5 total
+
+Select objects:
+                  TEXT      Layer: "0"
+                            Space: Model space
+                   Color: 0,0,0    Linetype: "BYLAYER"
+                   Handle = 21c
+             Style = "Standard"
+        Annotative: No
+             Typeface = Arial
+             start point, X=  22.1421  Y=  45.1958  Z=   0.0000
+            height    3.0000
+              text Block 1
+          rotation angle     90
+             width scale factor    1.0000
+         obliquing angle      0
+        generation normal
+
+                  LWPOLYLINE  Layer: "0"
+                            Space: Model space
+                   Color: 6 (magenta)    Linetype: "BYLAYER"
+                   Handle = 212
+              Open
+    Constant width    0.0000
+              area   0.0000
+            length   100.0000
+
+          at point  X=  25.7084  Y=   2.7559  Z=   0.0000
+          at point  X=  25.7084  Y= 102.7559  Z=   0.0000
+
+Press ENTER to continue:
+                  HATCH     Layer: "0"
+                            Space: Model space
+                   Color: 247,242,129    Linetype: "BYLAYER"
+                   Handle = 219
+                 Hatch pattern SOLID
+                 Associative
+                 Area      2900.0000
+                 Origin    X=   0.0000  Y=   0.0000  Z=   0.0000
+
+                  TEXT      Layer: "0"
+                            Space: Model space
+                   Color: 0,0,0    Linetype: "BYLAYER"
+                   Handle = 220
+             Style = "Standard"
+        Annotative: No
+             Typeface = Arial
+             start point, X=  70.7849  Y=  45.1958  Z=   0.0000
+            height    3.0000
+              text Block 1
+          rotation angle     90
+             width scale factor    1.0000
+         obliquing angle      0
+        generation normal
+
+                  HATCH     Layer: "0"
+                            Space: Model space
+                   Color: 247,242,129    Linetype: "BYLAYER"
+                   Handle = 21d
+Press ENTER to continue:
+                 Hatch pattern SOLID
+                 Associative
+                 Area      2900.0000
+                 Origin    X=   0.0000  Y=   0.0000  Z=   0.0000
