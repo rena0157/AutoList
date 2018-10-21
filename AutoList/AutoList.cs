@@ -12,6 +12,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -52,6 +53,10 @@ namespace AutoList
         /// <returns>A dataLists of doubles</returns>
         public static List<double> GetDouble(string inputText, string pattern)
         {
+            // The input string cannot be null
+            if (inputText == null)
+                throw new NoNullAllowedException("The input String cannot be null");
+
             // The return list
             var returnList = new List<double>();
             foreach ( Match match in Regex.Matches(inputText, pattern) )
