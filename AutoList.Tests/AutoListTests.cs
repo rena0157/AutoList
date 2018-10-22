@@ -105,7 +105,7 @@ namespace AutoList.Tests
 
             // Act
             var result = AutoList.GetBlocks(inputText);
-
+            _output.WriteLine(result);
             // Assert
             Assert.Equal(expected, result);
         }

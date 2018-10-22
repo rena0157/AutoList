@@ -76,25 +76,38 @@ namespace AutoList
 
             const string orderValidationPattern = @"(LINE|LWPOLYLINE|HATCH|TEXT|MTEXT)";
             var matches = Regex.Matches(inputText, orderValidationPattern);
-            var requiresZero = new BitArray(matches.Count);
+            var requiresZero = new BitArray(textObjects.Capacity);
             requiresZero.SetAll(false);
+            var blockNumber = 0;
 
             for ( var matchIndex = 0; matchIndex < matches.Count - 1; ++matchIndex )
             {
                 var currentMatch = matches[matchIndex];
                 var nextMatch = matches[matchIndex + 1];
 
+                if ( currentMatch.Value == "TEXT" || currentMatch.Value == "MTEXT" )
+                    blockNumber++;
+
                 if ( ( currentMatch.Value == "TEXT" || currentMatch.Value == "MTEXT" )
-                     && ( nextMatch.Value != "LWPOLYLINE" || nextMatch.Value != "LINE" ) )
-                    requiresZero[matchIndex + 1] = true;
+                     && nextMatch.Value == "HATCH" )
+                    requiresZero[blockNumber - 1] = true;
             }
 
             var adjustedLengths = new List<double>(textObjects.Capacity);
+            var linkedLengths = new LinkedList<double>(lengths);
+            var first = linkedLengths.First;
             for ( var index = 0; index < textObjects.Count; ++index )
                 if ( requiresZero[index] )
+                {
                     adjustedLengths.Add(0);
+                }
                 else
-                    adjustedLengths.Add(lengths[index]);
+                {
+                    if (index == 0)
+                        adjustedLengths.Add(first.Value);
+                    else if ( first.Next != null ) 
+                        adjustedLengths.Add(first.Next.Value);
+                }
 
             return ExportCsv("Block ID,Frontage,Area", textObjects, adjustedLengths, areas);
         }
