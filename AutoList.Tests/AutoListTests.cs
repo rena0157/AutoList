@@ -9,11 +9,15 @@
 // 
 // ============================================================
 
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Net;
 using Xunit;
 using Xunit.Abstractions;
+using Xunit.Sdk;
 
 namespace AutoList.Tests
 {
@@ -29,8 +33,32 @@ namespace AutoList.Tests
         private static readonly string[] Filenames =
         {
             @".\TestFiles\GenericListText.txt",
-            @".\TestFiles\BlocksTest.txt"
+            @".\TestFiles\BlocksTest.txt",
+            @".\TestFiles\BlocksTest_1.txt"
         };
+
+        private class BlocksTestData : IEnumerable<object[]>
+        {
+            IEnumerator<object[]> IEnumerable<object[]>.GetEnumerator()
+            {
+                yield return new object[] 
+                { 
+                    @".\TestFiles\BlocksTest.txt", 
+                    "Block ID,Frontage,Area,\nBlock 1,100,2900,\nBlock 1,0,2900,\n"
+                };
+
+                yield return new object[]
+                {
+                    @".\TestFiles\BlocksTest_1.txt",
+                    "Fail"
+                };
+            }
+
+            public IEnumerator GetEnumerator()
+            {
+                yield return new object();
+            }
+        }
 
         private readonly ITestOutputHelper _output;
 
@@ -68,15 +96,16 @@ namespace AutoList.Tests
             Assert.Equal(expectedString, result);
         }
 
-        [Fact]
-        public void GetBlocks_Export()
+        [Theory]
+        [ClassData(typeof(BlocksTestData))]
+        public void GetBlocks_Export(string filename, string expected)
         {
             // Arrange
-            var inputText = File.ReadAllText(Filenames[1]);
+            var inputText = File.ReadAllText(filename);
 
             // Act
             var result = AutoList.GetBlocks(inputText);
-            var expected = "Block ID,Frontage,Area,\nBlock 1,100,2900,\nBlock 1,0,2900,\n";
+
             // Assert
             Assert.Equal(expected, result);
         }

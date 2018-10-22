@@ -52,6 +52,9 @@ namespace AutoList
         /// <returns>A dataLists of doubles</returns>
         public static List<double> GetDouble(string inputText, string pattern)
         {
+            if (pattern == null)
+                throw new ArgumentNullException(nameof(pattern));
+
             var returnList = new List<double>();
             foreach ( Match match in Regex.Matches(inputText, pattern) )
                 if ( double.TryParse(match.Groups["number"].Value, out var tempNum) )
@@ -60,6 +63,11 @@ namespace AutoList
             return returnList;
         }
 
+        /// <summary>
+        /// Returns a CSV file that is formatted "Block ID, Frontage Length, Area"
+        /// </summary>
+        /// <param name="inputText">Input text from the AutoCAD List command</param>
+        /// <returns>A formatted response that has information from the List Command</returns>
         public static string GetBlocks(string inputText)
         {
             var textObjects = GetText(inputText, AutoListPatterns.TextPattern);
