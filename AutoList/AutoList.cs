@@ -74,12 +74,37 @@ namespace AutoList
             var lengths = GetDouble(inputText, AutoListPatterns.LinesLengthPattern);
             var areas = GetDouble(inputText, AutoListPatterns.HatchAreaPattern);
 
+            // If the count of text is not the same as areas throw an exception
+            if (textObjects.Count != areas.Count)
+                throw new ArgumentException("The number of text objects must be equal to the" +
+                                            "number of areas");
+
+            /*
+             * Before we can use the data in the lists above we need to make sure that
+             * they are the same lengths and that data lines up. Every block has a block ID
+             * and area, but not all blocks have to have a frontage. To fix this we need
+             * to get a pattern of selection from the list file and then compare that
+             * to the expected pattern. If the current item is a text object and the
+             * next item is a hatch then we know that we must at a zero in place of the missing
+             * data.
+             */
+
             const string orderValidationPattern = @"(LINE|LWPOLYLINE|HATCH|TEXT|MTEXT)";
             var matches = Regex.Matches(inputText, orderValidationPattern);
+
+            // A bit array that is initially all set to zero
             var requiresZero = new BitArray(textObjects.Capacity);
             requiresZero.SetAll(false);
+
+            // The block number relates to the text objects. They are the anchor 
+            // that determines when a new block begins
             var blockNumber = 0;
 
+            /*
+             * Loop through all of the matches and if the pattern "Text object - Hatch" is
+             * found then we know that a zero for the frontage must be placed at that block
+             * we then change that blocks require zero position to true in the bit array.
+             */
             for ( var matchIndex = 0; matchIndex < matches.Count - 1; ++matchIndex )
             {
                 var currentMatch = matches[matchIndex];
@@ -93,9 +118,16 @@ namespace AutoList
                     requiresZero[blockNumber - 1] = true;
             }
 
+            // The list that will contain the adjusted frontage doubles
             var adjustedLengths = new List<double>(textObjects.Capacity);
             var linkedLengths = new LinkedList<double>(lengths);
             var first = linkedLengths.First;
+
+            /*
+             * Iterate through the requires zero bit array, if that position requires
+             * a zero place it there, otherwise grab the next available data from the
+             * frontage line.
+             */
             for ( var index = 0; index < textObjects.Count; ++index )
                 if ( requiresZero[index] )
                 {
@@ -109,6 +141,7 @@ namespace AutoList
                         adjustedLengths.Add(first.Next.Value);
                 }
 
+            // Export the data to a csv file
             return ExportCsv("Block ID,Frontage,Area", textObjects, adjustedLengths, areas);
         }
 
