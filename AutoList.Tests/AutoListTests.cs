@@ -50,7 +50,9 @@ namespace AutoList.Tests
                 yield return new object[]
                 {
                     @".\TestFiles\BlocksTest_1.txt",
-                    "Fail"
+                    "Block ID,Frontage,Area,\nBlock 1 - " +
+                    "Frontage,50,1450,\nBlock 2 -  No Frontage,0,1450,\nBlock 3 - " +
+                    "Frontage,50,1450,\nBlock 4 -  No Frontage,0,1450,\n"
                 };
             }
 
