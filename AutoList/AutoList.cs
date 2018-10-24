@@ -97,8 +97,9 @@ namespace AutoList
         /// Returns a CSV file that is formatted "Block ID, Frontage Length, Area"
         /// </summary>
         /// <param name="inputText">Input text from the AutoCAD List command</param>
+        /// <param name="exportOption"></param>
         /// <returns>A formatted response that has information from the List Command</returns>
-        public static string GetBlocks(string inputText)
+        public static string GetBlocks(string inputText, ExportOptions exportOption=ExportOptions.csv)
         {
             var textObjects = GetText(inputText, AutoListPatterns.TextPattern);
             var lengths = GetDouble(inputText, AutoListPatterns.LinesLengthPattern);
@@ -171,8 +172,16 @@ namespace AutoList
                         adjustedLengths.Add(first.Next.Value);
                 }
 
-            // Export the data to a csv file
-            return ExportCsv("Block ID,Frontage,Area", textObjects, adjustedLengths, areas);
+            // Select appropriate option for the export type
+            switch (exportOption)
+            {
+                case ExportOptions.csv:
+                    return ExportCsv("Block ID,Frontage,Area", textObjects, adjustedLengths, areas);
+                case ExportOptions.json:
+                    return ExportJson(textObjects, adjustedLengths, areas);
+                default:
+                    return ExportCsv("Block ID,Frontage,Area", textObjects, adjustedLengths, areas);
+            }
         }
 
         /// <summary>
@@ -190,7 +199,7 @@ namespace AutoList
             var tempList = new List<Block>();
             tempList.AddRange(blockIdsList.Select((t, index) => new Block(t, lengthsList[index], areasList[index])));
 
-            return JsonConvert.SerializeObject(tempList, Formatting.Indented);
+            return JsonConvert.SerializeObject(tempList, Formatting.None);
         }
 
         /// <summary>

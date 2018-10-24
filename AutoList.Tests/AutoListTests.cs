@@ -37,22 +37,41 @@ namespace AutoList.Tests
             @".\TestFiles\BlocksTest_1.txt"
         };
 
+        /// <inheritdoc />
+        /// <summary>
+        /// Block Data class for testing
+        /// </summary>
         private class BlocksTestData : IEnumerable<object[]>
         {
+            // Information that the testing class uses for data
             IEnumerator<object[]> IEnumerable<object[]>.GetEnumerator()
             {
+                // CSV Test - Block Data 1
                 yield return new object[] 
                 { 
                     @".\TestFiles\BlocksTest.txt", 
-                    "Block ID,Frontage,Area,\nBlock 1,100,2900,\nBlock 1,0,2900,\n"
+                    "Block ID,Frontage,Area,\nBlock 1,100,2900,\nBlock 1,0,2900,\n",
+                    ExportOptions.csv
                 };
 
+                // CSV Test
                 yield return new object[]
                 {
                     @".\TestFiles\BlocksTest_1.txt",
                     "Block ID,Frontage,Area,\nBlock 1 - " +
                     "Frontage,50,1450,\nBlock 2 -  No Frontage,0,1450,\nBlock 3 - " +
-                    "Frontage,50,1450,\nBlock 4 -  No Frontage,0,1450,\n"
+                    "Frontage,50,1450,\nBlock 4 -  No Frontage,0,1450,\n",
+                    ExportOptions.csv
+                };
+
+                // Json Test
+                yield return new object[]
+                {
+                    @".\TestFiles\BlocksTest_1.txt",
+                    "[{\"Id\":\"Block 1 - Frontage\",\"Frontage\":50.0,\"Area\":1450.0},{\"Id\":\"Block 2 -  " +
+                    "No Frontage\",\"Frontage\":0.0,\"Area\":1450.0},{\"Id\":\"Block 3 - Frontage\",\"Frontage\":50.0," +
+                    "\"Area\":1450.0},{\"Id\":\"Block 4 -  No Frontage\",\"Frontage\":0.0,\"Area\":1450.0}]",
+                    ExportOptions.json
                 };
             }
 
@@ -100,13 +119,13 @@ namespace AutoList.Tests
 
         [Theory]
         [ClassData(typeof(BlocksTestData))]
-        public void GetBlocks_Export(string filename, string expected)
+        public void GetBlocks_Export(string filename, string expected, ExportOptions option)
         {
             // Arrange
             var inputText = File.ReadAllText(filename);
 
             // Act
-            var result = AutoList.GetBlocks(inputText);
+            var result = AutoList.GetBlocks(inputText, option);
             _output.WriteLine(result);
             // Assert
             Assert.Equal(expected, result);
