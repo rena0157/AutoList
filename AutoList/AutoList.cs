@@ -15,11 +15,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using Newtonsoft.Json;
 
 namespace AutoList
 {
     public static class AutoList
     {
+        /// <summary>
+        /// A simple block class
+        /// </summary>
+        private class Block
+        {
+
+            public Block(string id, double frontage, double area)
+            {
+                Id = id;
+                Frontage = frontage;
+                Area = area;
+            }
+
+            /// <summary>
+            /// The ID/name of the block
+            /// </summary>
+            public string Id { get; set; }
+
+            /// <summary>
+            /// The Frontage of the block
+            /// </summary>
+            public double Frontage { get; set; }
+
+            /// <summary>
+            /// The Area of the block
+            /// </summary>
+            public double Area { get; set; }
+        }
+
         /// <summary>
         ///     Returns a dataLists of text objects that are in a string
         ///     with the "text" group name within their <see cref="pattern" />
@@ -145,6 +175,31 @@ namespace AutoList
             return ExportCsv("Block ID,Frontage,Area", textObjects, adjustedLengths, areas);
         }
 
+        /// <summary>
+        /// Exporting a series of lists to 
+        /// </summary>
+        /// <param name="blockIdsList"></param>
+        /// <param name="lengthsList"></param>
+        /// <param name="areasList"></param>
+        /// <returns>A Json String</returns>
+        public static string ExportJson(List<string> blockIdsList, List<double> lengthsList, List<double> areasList)
+        {
+            if (blockIdsList.Count != lengthsList.Count || blockIdsList.Count != areasList.Count)
+                throw new JsonSerializationException("Arrays must be the same length");
+
+            var tempList = new List<Block>();
+            tempList.AddRange(blockIdsList.Select((t, index) => new Block(t, lengthsList[index], areasList[index])));
+
+            return JsonConvert.SerializeObject(tempList, Formatting.Indented);
+        }
+
+        /// <summary>
+        /// Function that takes in headers and a series of data lists then converts this to a
+        /// CSV string
+        /// </summary>
+        /// <param name="headers">The Headers of the CSV file</param>
+        /// <param name="dataLists">The data rows of the CSV file</param>
+        /// <returns>A string that is the CSV File</returns>
         public static string ExportCsv(string headers, params IList[] dataLists)
         {
             var itemsPerList = dataLists[0].Count;
@@ -164,5 +219,11 @@ namespace AutoList
 
             return sb.ToString();
         }
+    }
+
+    public enum ExportOptions
+    {
+        csv,
+        json
     }
 }

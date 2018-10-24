@@ -6,4 +6,8 @@
     <Description>An AutoCAD List command Parsing library</Description>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+  </ItemGroup>
+
 </Project>
