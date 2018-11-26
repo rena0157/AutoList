@@ -10,6 +10,18 @@
                 "${workspaceFolder}/AutoList.Tests/AutoList.Tests.csproj"
             ],
             "problemMatcher": "$msCompile"
+        },
+
+        {
+            "label": "test",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "test",
+                "${workspaceFolder}/AutoList.Tests"
+            ],
+            "problemMatcher": "$msCompile",
+            "dependsOn": "build"
         }
     ]
 }
