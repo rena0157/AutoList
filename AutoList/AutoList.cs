@@ -18,6 +18,9 @@ using System.Text.RegularExpressions;
 
 namespace AutoList
 {
+    /// <summary>
+    /// AutoList Class
+    /// </summary>
     public static class AutoList
     {
         /// <summary>
