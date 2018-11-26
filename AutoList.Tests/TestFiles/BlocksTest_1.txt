@@ -1,0 +1,138 @@
+﻿Command: LI
+LIST
+Select objects: 1 found
+
+Select objects: 1 found, 2 total
+
+Select objects: 1 found, 3 total
+
+Select objects: 1 found, 4 total
+
+Select objects: 1 found, 5 total
+
+Select objects: 1 found, 6 total
+
+Select objects: 1 found, 7 total
+
+Select objects: 1 found, 8 total
+
+Select objects: 1 found, 9 total
+
+Select objects: 1 found, 10 total
+
+Select objects:
+                  MTEXT     Layer: "0"
+                            Space: Model space
+                   Color: 0,0,0    Linetype: "BYLAYER"
+                   Handle = 217
+             Style = "Standard"
+        Annotative: No
+Location:        X=  24.6440  Y=  22.2945  Z=   0.0000
+Width:             22.6307
+Normal:          X=   0.0000  Y=   0.0000  Z=   1.0000
+Rotation:                0
+Text height:        2.0000
+Line spacing:    Multiple (1x =    3.3333)
+Attachment:      TopLeft
+Flow direction:  ByStyle
+Contents:        Block 1 - Frontage
+
+                  LINE      Layer: "0"
+                            Space: Model space
+                   Color: 0,0,0    Linetype: "BYLAYER"
+                   Handle = 21c
+              from point, X=  61.1973  Y=  30.4964  Z=   0.0000
+                to point, X=  11.1973  Y=  30.4964  Z=   0.0000
+          Length =  50.0000,  Angle in XY Plane =    180
+                  Delta X = -50.0000, Delta Y =    0.0000, Delta Z =   0.0000
+
+                  HATCH     Layer: "0"
+                            Space: Model space
+                   Handle = 213
+                 Hatch pattern SOLID
+                 Not associative
+                 Area      1450.0000
+                 Origin    X=   0.0000  Y=   0.0000  Z=   0.0000
+
+                  MTEXT     Layer: "0"
+                            Space: Model space
+                   Color: 0,0,0    Linetype: "BYLAYER"
+                   Handle = 223
+             Style = "Standard"
+        Annotative: No
+Location:        X=  94.1510  Y=  21.4949  Z=   0.0000
+Width:             30.1315
+Normal:          X=   0.0000  Y=   0.0000  Z=   1.0000
+Rotation:                0
+Text height:        2.0000
+Line spacing:    Multiple (1x =    3.3333)
+Attachment:      TopLeft
+Flow direction:  ByStyle
+Contents:        Block 2 -  No Frontage
+
+Press ENTER to continue:
+                  HATCH     Layer: "0"
+                            Space: Model space
+                   Handle = 21d
+                 Hatch pattern SOLID
+                 Not associative
+                 Area      1450.0000
+                 Origin    X=   0.0000  Y=   0.0000  Z=   0.0000
+
+                  MTEXT     Layer: "0"
+                            Space: Model space
+                   Color: 0,0,0    Linetype: "BYLAYER"
+                   Handle = 22a
+             Style = "Standard"
+        Annotative: No
+Location:        X= 162.3052  Y=  22.2945  Z=   0.0000
+Width:             22.6307
+Normal:          X=   0.0000  Y=   0.0000  Z=   1.0000
+Rotation:                0
+Text height:        2.0000
+Line spacing:    Multiple (1x =    3.3333)
+Attachment:      TopLeft
+Flow direction:  ByStyle
+Contents:        Block 3 - Frontage
+
+                  LINE      Layer: "0"
+                            Space: Model space
+                   Color: 0,0,0    Linetype: "BYLAYER"
+                   Handle = 228
+              from point, X= 198.8584  Y=  30.4964  Z=   0.0000
+                to point, X= 148.8584  Y=  30.4964  Z=   0.0000
+          Length =  50.0000,  Angle in XY Plane =    180
+                  Delta X = -50.0000, Delta Y =    0.0000, Delta Z =   0.0000
+
+                  HATCH     Layer: "0"
+                            Space: Model space
+                   Handle = 224
+                 Hatch pattern SOLID
+                 Not associative
+                 Area      1450.0000
+                 Origin    X=   0.0000  Y=   0.0000  Z=   0.0000
+
+                  MTEXT     Layer: "0"
+                            Space: Model space
+                   Color: 0,0,0    Linetype: "BYLAYER"
+                   Handle = 231
+             Style = "Standard"
+        Annotative: No
+Location:        X= 231.8122  Y=  21.4949  Z=   0.0000
+Width:             30.1315
+Normal:          X=   0.0000  Y=   0.0000  Z=   1.0000
+Rotation:                0
+Press ENTER to continue:
+Text height:        2.0000
+Line spacing:    Multiple (1x =    3.3333)
+Attachment:      TopLeft
+Flow direction:  ByStyle
+Contents:        Block 4 -  No Frontage
+
+                  HATCH     Layer: "0"
+                            Space: Model space
+                   Handle = 22b
+                 Hatch pattern SOLID
+                 Not associative
+                 Area      1450.0000
+                 Origin    X=   0.0000  Y=   0.0000  Z=   0.0000
