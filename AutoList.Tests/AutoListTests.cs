@@ -132,14 +132,15 @@ namespace AutoList.Tests
         public void ExportToCsv()
         {
             // Arrange
-            const string headers = "h1,h2,h3";
-            var dataList1 = new List<string> {"d1", "d4", "d7"};
-            var dataList2 = new List<string> {"d2", "d5", "d8"};
-            var dataList3 = new List<string> {"d3", "d6", "d9"};
-            const string expectedString = "h1,h2,h3,\nd1,d2,d3,\nd4,d5,d6,\nd7,d8,d9,\n";
+            const string headers = "Block ID,Frontage,Area";
+            var dataList1 = new AutoList.Block("Block 1", 100, 101);
+            var dataList2 = new AutoList.Block("Block 2", 200, 201);
+            var dataList3 = new AutoList.Block("Block 3", 300, 301);
+            var blocks = new List<AutoList.Block>() {dataList1, dataList2, dataList3};
+            const string expectedString = "Block ID,Frontage,Area,\nBlock 1,100,101,\nBlock 2,200,201,\nBlock 3,300,301,\n";
 
             // Act
-            string result = null; // AutoList.ExportCsv(headers, dataList1, dataList2, dataList3);
+            string result = AutoList.ExportCsv(headers,blocks);
 
             // Assert
             Assert.Equal(expectedString, result);
