@@ -21,15 +21,31 @@ using Xunit.Sdk;
 
 namespace AutoList.Tests
 {
+    /// <summary>
+    /// Testing class for AutoList
+    /// </summary>
     public class AutoListTests
     {
+        /// <summary>
+        /// Get the ITestOutputHelper using DI
+        /// </summary>
+        /// <param name="output"></param>
         public AutoListTests(ITestOutputHelper output)
         {
             _output = output;
         }
 
-        private static string ReadFile(string fileName) { return File.ReadAllText(fileName); }
+        /// <summary>
+        /// Simple ReadAllText wrapper
+        /// </summary>
+        /// <param name="fileName">The file name that will be read</param>
+        /// <returns>All of the text from the file</returns>
+        private static string ReadFile(string fileName) => File.ReadAllText(fileName);
 
+        /// <summary>
+        /// A List of filenames that will be tested
+        /// </summary>
+        /// <value></value>
         private static readonly string[] Filenames =
         {
             @".\TestFiles\GenericListText.txt",
@@ -81,8 +97,17 @@ namespace AutoList.Tests
             }
         }
 
+        /// <summary>
+        /// Output Helper that links tests to the standard output
+        /// </summary>
         private readonly ITestOutputHelper _output;
 
+        /// <summary>
+        /// Test Theory that tests the length and area
+        /// from the first filename
+        /// </summary>
+        /// <param name="expectedDoubles">A list of expected values</param>
+        /// <param name="pattern">The extraction pattern</param>
         [Theory]
         [InlineData(new[] {2.4312, 1.2566, 5.4836}, AutoListPatterns.LinesLengthPattern)]
         [InlineData(new[] {1.6050, 2.5373}, AutoListPatterns.HatchAreaPattern)]
@@ -100,6 +125,9 @@ namespace AutoList.Tests
                 _output.WriteLine(n.ToString(CultureInfo.InvariantCulture));
         }
 
+        /// <summary>
+        /// Testing the export csv functionality
+        /// </summary>
         [Fact]
         public void ExportToCsv()
         {
@@ -117,13 +145,18 @@ namespace AutoList.Tests
             Assert.Equal(expectedString, result);
         }
 
+        /// <summary>
+        /// Main GetBlocks testing function
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <param name="expected"></param>
+        /// <param name="option"></param>
         [Theory]
         [ClassData(typeof(BlocksTestData))]
         public void GetBlocks_Export(string filename, string expected, ExportOptions option)
         {
             // Arrange
             var inputText = File.ReadAllText(filename);
-
             // Act
             var result = AutoList.GetBlocks(inputText, option);
             _output.WriteLine($"Result: {result}\n Expected: {expected}");
@@ -131,6 +164,9 @@ namespace AutoList.Tests
             Assert.Equal(expected, result);
         }
 
+        /// <summary>
+        /// Extracting text objects test
+        /// </summary>
         [Fact]
         public void GetText_ExtractTextObjects()
         {
