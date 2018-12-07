@@ -111,16 +111,10 @@ namespace AutoList
             var lengths = GetDouble(inputText, AutoListPatterns.LinesLengthPattern);
             var areas = GetDouble(inputText, AutoListPatterns.HatchAreaPattern);
 
-            // If the count of text is not the same as areas throw an exception
-            if (textObjects.Count != areas.Count)
-                throw new ArgumentException("The number of text objects must be equal to the" +
-                                            "number of areas");
-
             /*
                 This validation pattern is used to determine the order of
                 objects in the List Output
              */
-
             const string orderValidationPattern = @"(LINE|LWPOLYLINE|HATCH|TEXT|MTEXT)";
             var matches = Regex.Matches(inputText, orderValidationPattern);
 
@@ -142,27 +136,41 @@ namespace AutoList
             {
                 var currentMatch = matches[matchIndex];
 
+                // Get the initial block ID
                 if (currentText == null && (currentMatch.Value == "TEXT" || currentMatch.Value == "MTEXT"))
+                {
                     currentText = textObjects[textIndex++];
+                    continue;
+                }
 
+                // Add length of a line and polyline to the total length
                 if (currentMatch.Value == "LWPOLYLINE" || currentMatch.Value == "LINE")
+                {
                     currentLength += lengths[lineIndex++];
+                    continue;
+                }
 
                 // If the current item is a hatch then add the area of the hatch
                 // to the list
                 if (currentMatch.Value == "HATCH")
+                {
                     currentArea += areas[areaIndex++];
+                    continue;
+                }
 
                 // Build the block and place it into the list
                 if (currentText != null && (currentMatch.Value == "TEXT" || currentMatch.Value == "MTEXT"))
                 {
                     blocks.Add(new Block(currentText, currentLength, currentArea));
-                    currentText = null;
+                    currentText = textObjects[textIndex++];
                     currentLength = 0;
                     currentArea = 0;
                 }
-
             }
+
+            // Build the final block
+            if (blocks.Count < textObjects.Count)
+                blocks.Add(new Block(currentText, currentLength, currentArea));
 
             // Select appropriate option for the export type
             switch (exportOption)
