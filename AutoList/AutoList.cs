@@ -20,7 +20,7 @@ using Newtonsoft.Json;
 namespace AutoList
 {
     /// <summary>
-    /// AutoList Class
+    /// AutoList Main Class
     /// </summary>
     public static class AutoList
     {
