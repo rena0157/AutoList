@@ -29,12 +29,15 @@ namespace AutoList
         /// </summary>
         private class Block
         {
+            /// <summary>
+            /// Values backend of the Block type
+            /// </summary>
+            private double[] _values;
 
-            public Block(string id, double frontage, double area)
+            public Block(string id, double frontage = 0, double area = 0)
             {
                 Id = id;
-                Frontage = frontage;
-                Area = area;
+                _values = new[] {frontage, area};
             }
 
             /// <summary>
@@ -45,12 +48,12 @@ namespace AutoList
             /// <summary>
             /// The Frontage of the block
             /// </summary>
-            public double Frontage { get; set; }
+            public double Frontage => _values[0];
 
             /// <summary>
             /// The Area of the block
             /// </summary>
-            public double Area { get; set; }
+            public double Area => _values[1];
         }
 
         /// <summary>
