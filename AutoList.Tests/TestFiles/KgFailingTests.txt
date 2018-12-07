@@ -1,0 +1,93 @@
+LWPOLYLINE  Layer: "2-CAL_EXEC. TOWNS"
+                            Space: Model space
+                   Handle = 494b2201
+              Open
+    Constant width     0.000
+              area   0.000
+            length   114.436
+          at point  X=384464.656  Y=5035762.917  Z=    0.000
+          at point  X=384419.619  Y=5035868.117  Z=    0.000
+                  HATCH     Layer: "1-HATCH EXEC. TOWNS"
+                            Space: Model space
+                   Handle = 494b1d99
+                 Hatch pattern SOLID
+                 Not associative
+                 Area      3116.473
+                 Origin    X=    0.000  Y=    0.000  Z=    0.000
+                  LWPOLYLINE  Layer: "2-CAL_EXEC. TOWNS"
+                            Space: Model space
+                   Handle = 494b2200
+              Open
+    Constant width     0.000
+              area   0.000
+            length   117.088
+          at point  X=384427.853  Y=5035742.165  Z=    0.000
+          at point  X=384381.772  Y=5035849.804  Z=    0.000
+                  HATCH     Layer: "1-HATCH EXEC. TOWNS"
+                            Space: Model space
+                   Handle = 494b1d9a
+                 Hatch pattern SOLID
+                 Associative
+                 Area      3278.873
+                 Origin    X=    0.000  Y=    0.000  Z=    0.000
+                  LWPOLYLINE  Layer: "2-CAL_EXEC. TOWNS"
+                            Space: Model space
+                   Handle = 494b21fe
+              Open
+    Constant width     0.000
+              area   622.243
+            length   131.431
+          at point  X=384359.251  Y=5035826.182  Z=    0.000
+          at point  X=384396.807  Y=5035738.457  Z=    0.000
+             bulge     0.168
+            center  X=384446.449  Y=5035759.709  Z=    0.000
+            radius    54.000
+       start angle       203
+         end angle       241
+          at point  X=384420.582  Y=5035712.308  Z=    0.000
+Press ENTER to continue:
+                  HATCH     Layer: "1-HATCH EXEC. TOWNS"
+                            Space: Model space
+                   Handle = 494b1d9b
+                 Hatch pattern SOLID
+                 Not associative
+                 Area      3945.270
+                 Origin    X=    0.000  Y=    0.000  Z=    0.000
+                  LWPOLYLINE  Layer: "2-CAL_EXEC. TOWNS"
+                            Space: Model space
+                   Handle = 494b21fd
+              Open
+    Constant width     0.000
+              area   0.000
+            length   106.387
+          at point  X=384368.019  Y=5035698.985  Z=    0.000
+          at point  X=384326.149  Y=5035796.786  Z=    0.000
+                  HATCH     Layer: "1-HATCH EXEC. TOWNS"
+                            Space: Model space
+                   Handle = 494b1d95
+                 Hatch pattern SOLID
+                 Associative
+                 Area      3166.840
+                 Origin    X=    0.000  Y=    0.000  Z=    0.000
+                  LWPOLYLINE  Layer: "2-CAL_EXEC. TOWNS"
+                            Space: Model space
+                   Handle = 494b2202
+              Open
+    Constant width     0.000
+              area   43.878
+            length   44.155
+          at point  X=384410.166  Y=5035671.811  Z=    0.000
+          at point  X=384397.324  Y=5035674.753  Z=    0.000
+             bulge     0.061
+            center  X=384368.736  Y=5035549.987  Z=    0.000
+            radius   128.000
+       start angle        77
+         end angle        91
+          at point  X=384366.587  Y=5035677.968  Z=    0.000
+                  HATCH     Layer: "1-HATCH EXEC. TOWNS"
+                            Space: Model space
+                   Handle = 494b1d98
+                 Hatch pattern SOLID
+                 Not associative
+                 Area      1258.413
+                 Origin    X=    0.000  Y=    0.000  Z=    0.000
