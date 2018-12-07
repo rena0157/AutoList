@@ -126,7 +126,7 @@ namespace AutoList.Tests
 
             // Act
             var result = AutoList.GetBlocks(inputText, option);
-            _output.WriteLine(result);
+            _output.WriteLine($"Result: {result}\n Expected: {expected}");
             // Assert
             Assert.Equal(expected, result);
         }
