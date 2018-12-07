@@ -139,7 +139,7 @@ namespace AutoList.Tests
             const string expectedString = "h1,h2,h3,\nd1,d2,d3,\nd4,d5,d6,\nd7,d8,d9,\n";
 
             // Act
-            var result = AutoList.ExportCsv(headers, dataList1, dataList2, dataList3);
+            string result = null; // AutoList.ExportCsv(headers, dataList1, dataList2, dataList3);
 
             // Assert
             Assert.Equal(expectedString, result);
