@@ -4,15 +4,13 @@
 // ============================================================
 // 
 // Created: 2018-10-10
-// Last Updated: 2018-10-10-8:16 PM
+// Last Updated: 2018-12-07-03:57 PM
 // By: Adam Renaud
 // 
 // ============================================================
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
@@ -20,39 +18,10 @@ using Newtonsoft.Json;
 namespace AutoList
 {
     /// <summary>
-    /// AutoList Class
+    ///     AutoList Main Class
     /// </summary>
     public static class AutoList
     {
-        /// <summary>
-        /// A simple block class
-        /// </summary>
-        private class Block
-        {
-
-            public Block(string id, double frontage, double area)
-            {
-                Id = id;
-                Frontage = frontage;
-                Area = area;
-            }
-
-            /// <summary>
-            /// The ID/name of the block
-            /// </summary>
-            public string Id { get; set; }
-
-            /// <summary>
-            /// The Frontage of the block
-            /// </summary>
-            public double Frontage { get; set; }
-
-            /// <summary>
-            /// The Area of the block
-            /// </summary>
-            public double Area { get; set; }
-        }
-
         /// <summary>
         ///     Returns a dataLists of text objects that are in a string
         ///     with the "text" group name within their <see cref="pattern" />
@@ -85,7 +54,7 @@ namespace AutoList
         /// <returns>A dataLists of doubles</returns>
         public static List<double> GetDouble(string inputText, string pattern)
         {
-            if (pattern == null)
+            if ( pattern == null )
                 throw new ArgumentNullException(nameof(pattern));
 
             var returnList = new List<double>();
@@ -97,145 +66,157 @@ namespace AutoList
         }
 
         /// <summary>
-        /// Returns a CSV file that is formatted "Block ID, Frontage Length, Area"
+        ///     Returns a CSV file that is formatted "Block ID, Frontage Length, Area"
         /// </summary>
         /// <param name="inputText">Input text from the AutoCAD List command</param>
         /// <param name="exportOption"></param>
         /// <returns>A formatted response that has information from the List Command</returns>
-        public static string GetBlocks(string inputText, ExportOptions exportOption=ExportOptions.csv)
+        public static string GetBlocks(string inputText, ExportOptions exportOption = ExportOptions.Csv)
         {
             var textObjects = GetText(inputText, AutoListPatterns.TextPattern);
             var lengths = GetDouble(inputText, AutoListPatterns.LinesLengthPattern);
             var areas = GetDouble(inputText, AutoListPatterns.HatchAreaPattern);
 
-            // If the count of text is not the same as areas throw an exception
-            if (textObjects.Count != areas.Count)
-                throw new ArgumentException("The number of text objects must be equal to the" +
-                                            "number of areas");
-
             /*
-             * Before we can use the data in the lists above we need to make sure that
-             * they are the same lengths and that data lines up. Every block has a block ID
-             * and area, but not all blocks have to have a frontage. To fix this we need
-             * to get a pattern of selection from the list file and then compare that
-             * to the expected pattern. If the current item is a text object and the
-             * next item is a hatch then we know that we must at a zero in place of the missing
-             * data.
+                This validation pattern is used to determine the order of
+                objects in the List Output
              */
-
             const string orderValidationPattern = @"(LINE|LWPOLYLINE|HATCH|TEXT|MTEXT)";
             var matches = Regex.Matches(inputText, orderValidationPattern);
 
-            // A bit array that is initially all set to zero
-            var requiresZero = new BitArray(textObjects.Capacity);
-            requiresZero.SetAll(false);
+            var textIndex = 0;
+            var lineIndex = 0;
+            var areaIndex = 0;
 
-            // The block number relates to the text objects. They are the anchor 
-            // that determines when a new block begins
-            var blockNumber = 0;
+            string currentText = null;
+            double currentLength = 0;
+            double currentArea = 0;
+            var blocks = new List<Block>(textObjects.Capacity);
 
             /*
-             * Loop through all of the matches and if the pattern "Text object - Hatch" is
-             * found then we know that a zero for the frontage must be placed at that block
-             * we then change that blocks require zero position to true in the bit array.
+                Loop through the validation pattern. Use the pattern to determine the order of
+                objects that were selected. Use this information to build the current block 
+                and place it into the list of blocks.
              */
-            for ( var matchIndex = 0; matchIndex < matches.Count - 1; ++matchIndex )
+            for ( var matchIndex = 0; matchIndex < matches.Count; ++matchIndex )
             {
                 var currentMatch = matches[matchIndex];
-                var nextMatch = matches[matchIndex + 1];
 
-                if ( currentMatch.Value == "TEXT" || currentMatch.Value == "MTEXT" )
-                    blockNumber++;
+                // Get the initial block ID
+                if ( currentText == null && ( currentMatch.Value == "TEXT" || currentMatch.Value == "MTEXT" ) )
+                {
+                    currentText = textObjects[textIndex++];
+                    continue;
+                }
 
-                if ( ( currentMatch.Value == "TEXT" || currentMatch.Value == "MTEXT" )
-                     && nextMatch.Value == "HATCH" )
-                    requiresZero[blockNumber - 1] = true;
+                // Add length of a line and polyline to the total length
+                if ( currentMatch.Value == "LWPOLYLINE" || currentMatch.Value == "LINE" )
+                {
+                    currentLength += lengths[lineIndex++];
+                    continue;
+                }
+
+                // If the current item is a hatch then add the area of the hatch
+                // to the list
+                if ( currentMatch.Value == "HATCH" )
+                {
+                    currentArea += areas[areaIndex++];
+                    continue;
+                }
+
+                // Build the block and place it into the list
+                if ( currentText != null && ( currentMatch.Value == "TEXT" || currentMatch.Value == "MTEXT" ) )
+                {
+                    blocks.Add(new Block(currentText, currentLength, currentArea));
+                    currentText = textObjects[textIndex++];
+                    currentLength = 0;
+                    currentArea = 0;
+                }
             }
 
-            // The list that will contain the adjusted frontage doubles
-            var adjustedLengths = new List<double>(textObjects.Capacity);
-            var linkedLengths = new LinkedList<double>(lengths);
-            var first = linkedLengths.First;
-
-            /*
-             * Iterate through the requires zero bit array, if that position requires
-             * a zero place it there, otherwise grab the next available data from the
-             * frontage line.
-             */
-            for ( var index = 0; index < textObjects.Count; ++index )
-                if ( requiresZero[index] )
-                {
-                    adjustedLengths.Add(0);
-                }
-                else
-                {
-                    if (index == 0)
-                        adjustedLengths.Add(first.Value);
-                    else if ( first.Next != null ) 
-                        adjustedLengths.Add(first.Next.Value);
-                }
+            // Build the final block
+            if ( blocks.Count < textObjects.Count )
+                blocks.Add(new Block(currentText, currentLength, currentArea));
 
             // Select appropriate option for the export type
-            switch (exportOption)
+            switch ( exportOption )
             {
-                case ExportOptions.csv:
-                    return ExportCsv("Block ID,Frontage,Area", textObjects, adjustedLengths, areas);
-                case ExportOptions.json:
-                    return ExportJson(textObjects, adjustedLengths, areas);
+                case ExportOptions.Csv:
+                    return ExportCsv("Block ID,Frontage,Area", blocks);
+                case ExportOptions.Json:
+                    return ExportJson(blocks);
                 default:
-                    return ExportCsv("Block ID,Frontage,Area", textObjects, adjustedLengths, areas);
+                    return ExportCsv("Block ID,Frontage,Area", blocks);
             }
         }
 
         /// <summary>
-        /// Exporting a series of lists to 
+        ///     Exporting a series of lists to JSON
         /// </summary>
-        /// <param name="blockIdsList"></param>
-        /// <param name="lengthsList"></param>
-        /// <param name="areasList"></param>
+        /// <param name="blocks">Blocks that are to be serialized</param>
         /// <returns>A Json String</returns>
-        public static string ExportJson(List<string> blockIdsList, List<double> lengthsList, List<double> areasList)
+        public static string ExportJson(List<Block> blocks)
         {
-            if (blockIdsList.Count != lengthsList.Count || blockIdsList.Count != areasList.Count)
-                throw new JsonSerializationException("Arrays must be the same length");
-
-            var tempList = new List<Block>();
-            tempList.AddRange(blockIdsList.Select((t, index) => new Block(t, lengthsList[index], areasList[index])));
-
-            return JsonConvert.SerializeObject(tempList, Formatting.None);
+            return JsonConvert.SerializeObject(blocks, Formatting.None);
         }
 
         /// <summary>
-        /// Function that takes in headers and a series of data lists then converts this to a
-        /// CSV string
+        ///     Function that takes in headers and a series of data lists then converts this to a
+        ///     CSV string
         /// </summary>
         /// <param name="headers">The Headers of the CSV file</param>
-        /// <param name="dataLists">The data rows of the CSV file</param>
+        /// <param name="blocks">The blocks that will be added to the CSV</param>
         /// <returns>A string that is the CSV File</returns>
-        public static string ExportCsv(string headers, params IList[] dataLists)
+        public static string ExportCsv(string headers, IEnumerable<Block> blocks)
         {
-            var itemsPerList = dataLists[0].Count;
-            if ( dataLists.Any(l => l.Count != itemsPerList) )
-                throw new ArgumentException("Lists Must be all the same size");
-
             var sb = new StringBuilder();
             sb.Append(headers + ",\n");
-            // Write Lines
-            for ( var index = 0; index < itemsPerList; ++index )
+
+            foreach ( var block in blocks )
             {
-                // Write Data into lines
-                foreach ( var dataList in dataLists )
-                    sb.Append(dataList[index] + ",");
-                sb.Append("\n");
+                var line = $"{block.Id},{block.Frontage},{block.Area},\n";
+                sb.Append(line);
             }
 
             return sb.ToString();
+        }
+
+        /// <summary>
+        ///     A simple block class
+        /// </summary>
+        public class Block
+        {
+            /// <summary>
+            ///     Values backend of the Block type
+            /// </summary>
+            private readonly double[] _values;
+
+            public Block(string id, double frontage = 0, double area = 0)
+            {
+                Id = id;
+                _values = new[] {frontage, area};
+            }
+
+            /// <summary>
+            ///     The ID/name of the block
+            /// </summary>
+            public string Id { get; }
+
+            /// <summary>
+            ///     The Frontage of the block
+            /// </summary>
+            public double Frontage => _values[0];
+
+            /// <summary>
+            ///     The Area of the block
+            /// </summary>
+            public double Area => _values[1];
         }
     }
 
     public enum ExportOptions
     {
-        csv,
-        json
+        Csv,
+        Json
     }
 }

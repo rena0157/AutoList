@@ -1,0 +1,69 @@
+LIST
+Select objects: Specify opposite corner: 6 found
+
+Select objects:
+                  MTEXT     Layer: "0"
+                            Space: Model space
+                   Handle = 212
+             Style = "Standard"
+        Annotative: No
+Location:        X=   9.5216  Y=   8.4696  Z=   0.0000
+Width:              8.7790
+Normal:          X=   0.0000  Y=   0.0000  Z=   1.0000
+Rotation:                0
+Text height:        2.0000
+Line spacing:    Multiple (1x =    3.3333)
+Attachment:      TopLeft
+Flow direction:  ByStyle
+Contents:        MTEXT
+
+                  TEXT      Layer: "0"
+                            Space: Model space
+                   Handle = 210
+             Style = "Standard"
+        Annotative: No
+             Typeface = Arial
+             start point, X=   9.5216  Y=  11.5531  Z=   0.0000
+            height    2.0000
+              text TEXT
+          rotation angle      0
+             width scale factor    1.0000
+         obliquing angle      0
+        generation normal
+
+                  CIRCLE    Layer: "0"
+                            Space: Model space
+                   Handle = 20d
+            center point, X=  14.5906  Y=  17.9770  Z=   0.0000
+            radius    2.1672
+     circumference   13.6170
+              area   14.7554
+
+                  ARC       Layer: "0"
+                            Space: Model space
+                   Handle = 20b
+            center point, X=  14.3702  Y=  -5.8484  Z=   0.0000
+            radius   27.4506
+             start angle     80
+               end angle    100
+            length    9.7485
+Press ENTER to continue:
+
+                  LINE      Layer: "0"
+                            Space: Model space
+                   Handle = 20a
+              from point, X=   9.5216  Y=  23.5199  Z=   0.0000
+                to point, X=  19.2189  Y=  23.5199  Z=   0.0000
+          Length =   9.6973,  Angle in XY Plane =      0
+                  Delta X =   9.6973, Delta Y =    0.0000, Delta Z =   0.0000
+
+                  LWPOLYLINE  Layer: "0"
+                            Space: Model space
+                   Handle = 202
+              Open
+    Constant width    0.0000
+              area   0.0000
+            length   9.6973
+
+          at point  X=   9.5216  Y=  25.1718  Z=   0.0000
+          at point  X=  19.2189  Y=  25.1718  Z=   0.0000
