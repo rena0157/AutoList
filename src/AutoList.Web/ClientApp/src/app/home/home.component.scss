@@ -1,0 +1,19 @@
+#home-container {
+    display: grid;
+    padding: 10px 5px 10px 5px;
+    box-sizing: border-box;
+
+    h2 {
+        margin: 0.5rem 0 0.5rem 0;
+    }
+
+    .textarea-autoList {
+        resize: vertical;
+        font-family: 'Roboto Mono';
+        box-sizing: inherit;
+    }
+
+    #autoList-input {
+        height: 14em;
+    }
+}
