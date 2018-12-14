@@ -1,0 +1,28 @@
+// navigation header container
+#nav-container {
+    display: grid;
+    grid-template-columns: 0.5fr 0.5fr 0.5fr 10fr;
+    grid-template-rows: auto;
+    grid-column-gap: 1rem;
+    grid-template-areas:
+        "icon home about .";
+
+    background-color: #fdfdfd;
+    padding: 4px;
+    border-bottom: 0.8px solid rgb(156, 156, 156);
+
+    // box-shadow: none|h-offset v-offset blur spread color |inset|initial|inherit;
+    box-shadow: 0 1px 3px 1px #797979;
+
+    // All of the nav items in the nav bar
+    .nav-item {
+        font-size: 1.2rem;
+        box-sizing: border-box;
+        text-align: center;
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+    }
+}
