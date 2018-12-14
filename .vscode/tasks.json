@@ -7,9 +7,30 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/AutoList.Tests/AutoList.Tests.csproj"
+                "${workspaceFolder}"
             ],
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "test",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "test",
+                "${workspaceFolder}\\tests\\AutoList.Core.Tests\\AutoList.Core.Tests.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "Web:run",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "${workspaceFolder}\\src\\AutoList.Web\\"
+            ],
+            "problemMatcher": "$jshint"
         }
     ]
 }
