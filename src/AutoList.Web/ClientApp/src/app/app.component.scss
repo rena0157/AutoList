@@ -1,0 +1,16 @@
+#app-container {
+    display: grid;
+    grid-template-columns: 20% auto 20%;
+    grid-template-rows: 2rem auto;
+    grid-template-areas:
+        "nav nav nav"
+        ". router .";
+
+    #nav-container {
+        grid-area: nav;
+    }
+
+    #router-container {
+        grid-area: router;
+    }
+}
