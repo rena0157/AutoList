@@ -15,8 +15,9 @@ using System.Globalization;
 using System.IO;
 using Xunit;
 using Xunit.Abstractions;
+using AutoList.Core;
 
-namespace AutoList.Tests
+namespace AutoList.Core.Tests
 {
     /// <summary>
     ///     Testing class for AutoList
@@ -107,7 +108,7 @@ namespace AutoList.Tests
             // Arrange
             var inputString = File.ReadAllText(Filenames[0]);
             // Act
-            var result = AutoList.GetDouble(inputString, pattern);
+            var result = AutoListParser.GetDouble(inputString, pattern);
 
             // Assert
             Assert.Equal(expectedDoubles, result);
@@ -129,7 +130,7 @@ namespace AutoList.Tests
             // Arrange
             var inputText = File.ReadAllText(filename);
             // Act
-            var result = AutoList.GetBlocks(inputText, option);
+            var result = AutoListParser.GetBlocks(inputText, option);
             _output.WriteLine($"Result: {result}\n Expected: {expected}");
             // Assert
             Assert.Equal(expected, result);
@@ -143,15 +144,15 @@ namespace AutoList.Tests
         {
             // Arrange
             const string headers = "Block ID,Frontage,Area";
-            var dataList1 = new AutoList.Block("Block 1", 100, 101);
-            var dataList2 = new AutoList.Block("Block 2", 200, 201);
-            var dataList3 = new AutoList.Block("Block 3", 300, 301);
-            var blocks = new List<AutoList.Block> {dataList1, dataList2, dataList3};
+            var dataList1 = new Block("Block 1", 100, 101);
+            var dataList2 = new Block("Block 2", 200, 201);
+            var dataList3 = new Block("Block 3", 300, 301);
+            var blocks = new List<Block> {dataList1, dataList2, dataList3};
             const string expectedString =
                 "Block ID,Frontage,Area,\nBlock 1,100,101,\nBlock 2,200,201,\nBlock 3,300,301,\n";
 
             // Act
-            var result = AutoList.ExportCsv(headers, blocks);
+            var result = AutoListParser.ExportCsv(headers, blocks);
 
             // Assert
             Assert.Equal(expectedString, result);
@@ -172,7 +173,7 @@ namespace AutoList.Tests
             var inputString = ReadFile(Filenames[0]);
 
             // Act
-            var result = AutoList.GetText(inputString, AutoListPatterns.TextPattern);
+            var result = AutoListParser.GetText(inputString, AutoListPatterns.TextPattern);
 
             // Assert
             Assert.Equal(expectedStrings, result);

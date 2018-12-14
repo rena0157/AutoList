@@ -13,10 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AutoList\AutoList.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="TestFiles\BlocksTest.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -26,6 +22,10 @@
     <None Update="TestFiles\GenericListText.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\AutoList.Core\AutoList.Core.csproj" />
   </ItemGroup>
 
 </Project>

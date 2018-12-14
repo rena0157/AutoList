@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AutoList
+namespace AutoList.Core
 {
     public static class AutoListPatterns
     {
