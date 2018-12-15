@@ -5,7 +5,8 @@
     </div>
 
     <!-- Input textarea -->
-    <textarea id="autoList-input" class="textarea-autoList" style="grid-area: input"
+    <textarea #inputArea (keyup)="OnInputAreaKeyUp(inputArea.value);" id="autoList-input" class="textarea-autoList"
+        style="grid-area: input"
         placeholder="Enter text here..."></textarea>
 
     <!-- Total length -->
