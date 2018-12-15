@@ -1,8 +1,22 @@
 <div id="home-container">
-    <h2 class="heading">AutoList</h2>
+    <div style="grid-area: message;">
+        <h2 class="heading">AutoList</h2>
+        <p>AutoList is an AutoCAD List command parsing tool. Information for how to use the tool can be found at the following link</p>
+    </div>
 
-    <p>AutoList is an AutoCAD List command parsing tool. Information for how to use the tool can be found at the following link</p>
-
-    <textarea id="autoList-input" class="textarea-autoList"
+    <!-- Input textarea -->
+    <textarea id="autoList-input" class="textarea-autoList" style="grid-area: input"
         placeholder="Enter text here..."></textarea>
+
+    <!-- Total length -->
+    <textarea id="total-length" class="textarea-autoList textarea-small" readonly
+        style="grid-area: total-length"
+        placeholder="Total Length"></textarea>
+
+    <!-- Total Area -->
+    <textarea id="total-area" class="textarea-autoList textarea-small" readonly
+        style="grid-area: total-area"
+        placeholder="Total Area"></textarea>
+
+    <button class="autoList-button button-box" style="grid-area: get-objects">Get Objects</button>
 </div>

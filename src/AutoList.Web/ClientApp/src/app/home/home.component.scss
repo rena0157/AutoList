@@ -1,5 +1,14 @@
+// The border radius for box elements and buttons
+$borderRadius: 5px;
+
 #home-container {
     display: grid;
+    grid-template-rows: auto auto auto;
+    grid-template-columns: 25% 25% auto;
+    grid-template-areas:
+        "message message message"
+        "input input input"
+        "total-length total-area get-objects";
     padding: 10px 5px 10px 5px;
     box-sizing: border-box;
 
@@ -11,6 +20,33 @@
         resize: vertical;
         font-family: 'Roboto Mono';
         box-sizing: inherit;
+        border: 1px solid rgb(148, 146, 146);
+        border-radius: $borderRadius;
+        margin: 0 0 15px 0;
+        padding: 5px 10px 5px 10px;
+    }
+
+    .textarea-autoList:focus {
+        border: 1px solid blue;
+        box-shadow: 0.3px 0.3px 3px #979797;
+    }
+
+    .textarea-small {
+        width: 95%;
+        height: 2em;
+        resize: none;
+    }
+
+    .button-box {
+        width: 20%;
+        height: 2em;
+        border: 1px solid rgb(148, 146, 146);
+        border-radius: $borderRadius;
+    }
+
+    .button-box:active {
+        border: 1px solid blue;
+        box-shadow: 0.3px 0.3px 3px #979797;
     }
 
     #autoList-input {
