@@ -1,12 +1,12 @@
 ﻿// AutoList
 // AutoList.cs
-// 
+//
 // ============================================================
-// 
+//
 // Created: 2018-10-10
 // Last Updated: 2018-12-07-03:57 PM
 // By: Adam Renaud
-// 
+//
 // ============================================================
 
 using System;
@@ -82,7 +82,7 @@ namespace AutoList.Core
                 objects in the List Output
              */
             const string orderValidationPattern = @"(LINE|LWPOLYLINE|HATCH|TEXT|MTEXT)";
-            var matches = Regex.Matches(inputText, orderValidationPattern);
+            var matches = Regex.Matches(inputText, orderValidationPattern, RegexOptions.IgnoreCase);
 
             var textIndex = 0;
             var lineIndex = 0;
@@ -95,7 +95,7 @@ namespace AutoList.Core
 
             /*
                 Loop through the validation pattern. Use the pattern to determine the order of
-                objects that were selected. Use this information to build the current block 
+                objects that were selected. Use this information to build the current block
                 and place it into the list of blocks.
              */
             for ( var matchIndex = 0; matchIndex < matches.Count; ++matchIndex )

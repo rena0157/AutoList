@@ -32,6 +32,8 @@ export class HomeComponent implements OnInit {
      */
     public SquareUnit:string = "m²";
 
+    public ObjectsCsv:string;
+
     /**
      * Send the text from the input area to the
      * AutoList Api and place the total length
@@ -39,7 +41,7 @@ export class HomeComponent implements OnInit {
      * text areas
      * @param text The text from the textarea
      */
-    OnInputAreaKeyUp(text:string) {
+    OnInputAreaKeyUp(text:string):void {
         this._autoListApi.GetTotalLength(text)
             .subscribe(r => {
                 this.TotalLength = r;
@@ -49,6 +51,17 @@ export class HomeComponent implements OnInit {
             .subscribe(r => {
                 this.TotalArea = r
             });
+    }
+
+    GetObjectsOnClick(text:string):void {
+        this._autoListApi.GetBlocksCsv(text)
+            .subscribe(r => {
+                console.log(r);
+            });
+
+        this._autoListApi.GetBlocksJson(text)
+            .subscribe(r => console.log(r));
+
     }
 
     ngOnInit() {

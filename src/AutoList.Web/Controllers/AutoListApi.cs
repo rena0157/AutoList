@@ -66,6 +66,5 @@ namespace AutoList.Web.Controllers
         [HttpPost]
         public string GetBlocksCsv() => AutoListParser
             .GetBlocks(ReadBody(HttpContext), ExportOptions.Csv);
-
     }
 }

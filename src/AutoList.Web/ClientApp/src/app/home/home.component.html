@@ -19,5 +19,6 @@
         style="grid-area: total-area"
         >Total Area {{TotalArea | number:'1.0-4'}} {{SquareUnit}}</textarea>
 
-    <button class="autoList-button button-box" style="grid-area: get-objects">Get Objects</button>
+    <button class="autoList-button button-box" style="grid-area: get-objects"
+        (click)="GetObjectsOnClick(inputArea.value);">Get Objects</button>
 </div>
