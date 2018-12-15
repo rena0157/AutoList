@@ -12,12 +12,12 @@
     <!-- Total length -->
     <textarea id="total-length" class="textarea-autoList textarea-small" readonly
         style="grid-area: total-length"
-        placeholder="Total Length"></textarea>
+        >Total Length: {{TotalLength | number:'1.0-4'}} {{LinearUnit}}</textarea>
 
     <!-- Total Area -->
     <textarea id="total-area" class="textarea-autoList textarea-small" readonly
         style="grid-area: total-area"
-        placeholder="Total Area"></textarea>
+        >Total Area {{TotalArea | number:'1.0-4'}} {{SquareUnit}}</textarea>
 
     <button class="autoList-button button-box" style="grid-area: get-objects">Get Objects</button>
 </div>
